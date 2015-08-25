@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+
+require 'rest_client'
+
+SWEAR_WORDS_URL = 'https://raw.githubusercontent.com/ChaseFlorell/jQuery.ProfanityFilter/master/swearWords.json'
+
+puts "Loading swear words from source..."
+swear_words = JSON.parse(RestClient.get(SWEAR_WORDS_URL))
+phrase = ARGV[0].downcase
+
+
+puts swear_words.any? {|swear_word| phrase.include?(swear_word)}

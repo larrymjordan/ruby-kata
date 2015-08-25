@@ -1,0 +1,33 @@
+#!/usr/bin/env ruby
+
+$: << File.expand_path('lib', File.dirname(__FILE__))
+require 'post'
+
+if ARGV.empty?
+  puts "| Don't be dumb!. You must specify what you want to search!!!"
+  exit
+end
+
+search_text = ARGV[0]
+criteria = ARGV[1]
+
+puts "| Searching..."
+posts = Post.find_all(title: search_text)   if criteria == '--title'
+posts ||= Post.find_all(body: search_text)  if criteria == '--body'
+posts ||= Post.find_all(title: search_text, body: search_text)
+
+puts "#".ljust(1) + "".center(50, '#') + "#".rjust(1)
+puts "#".ljust(1) + "#{posts.size} posts were found".center(50) + "#".rjust(1)
+puts "#".ljust(1) + "".center(50, '#') + "#".rjust(1)
+
+posts.each do |post|
+  title = post[:title].index search_text
+  title = !title.nil? ? '...' + post[:title][title - 5, title.size + 15] + '...' : post[:title][0..15] + '...'
+  body  = post[:body].index search_text
+  body  = !body.nil? ? '...' + post[:body][body - 5, body.size + 15] + '...' : post[:body][0..15] + '...'
+  puts "+".ljust(1) + "".center(50, '-') + "+".rjust(1)
+  puts "|".ljust(1) + "id: #{post[:id]}".center(50) + "|".rjust(1)
+  puts "|".ljust(1) + "title: #{title}".center(50)  + "|".rjust(1)
+  puts "|".ljust(1) + "body: #{body}".center(50)    + "|".rjust(1)
+  puts "+".ljust(1) + "".center(50, '-') + "+".rjust(1)
+end

@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+
+word = ARGV[0]
+space = ARGV[1].to_i
+ALPHABET_LENGTH = 26 * 2
+
+alphabet_downcase = ('a'..'z').to_a
+alphabet_upcase = ('A'..'Z').to_a
+
+alphabet = alphabet_downcase.zip(alphabet_upcase).flatten
+
+chars_converted = word.chars.map do |c|
+  pos = alphabet.index(c)  + (space * 2)
+  pos = pos > ALPHABET_LENGTH ? pos - ALPHABET_LENGTH : pos
+  alphabet[pos]
+end.join
+
+puts chars_converted
