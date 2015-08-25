@@ -2,16 +2,15 @@ require 'spec_helper'
 
 describe KataRange::Range do
 
-  let(:two_to_six)            { KataRange::Range.new(2, 6,  to: :open)  }
-  let(:two_to_six_closed)     { KataRange::Range.new(2, 6)  }
-  let(:two_to_six_closed_six) { KataRange::Range.new(2, 6,  from: :open)  }
-  let(:two_to_six_open)       { KataRange::Range.new(2, 6,  from: :open, to: :open)  }
-  let(:two_to_five)           { KataRange::Range.new(2, 5,  to: :open)  }
-  let(:two_to_ten)            { KataRange::Range.new(2, 10, to: :open) }
-  let(:three_to_five)         { KataRange::Range.new(3, 5,  to: :open)  }
-  let(:three_to_ten)          { KataRange::Range.new(3, 10, to: :open) }
-  let(:seven_to_ten)          { KataRange::Range.new(7, 10, to: :open) }
-
+  let(:two_to_six)            { KataRange::Range.new('[2, 6)') }
+  let(:two_to_six_closed)     { KataRange::Range.new('[2, 6]') }
+  let(:two_to_six_closed_six) { KataRange::Range.new('(2, 6]') }
+  let(:two_to_six_open)       { KataRange::Range.new('(2, 6)') }
+  let(:two_to_five)           { KataRange::Range.new('[2, 5)') }
+  let(:two_to_ten)            { KataRange::Range.new('[2, 10)')}
+  let(:three_to_five)         { KataRange::Range.new('[3, 5)') }
+  let(:three_to_ten)          { KataRange::Range.new('[3, 10)') }
+  let(:seven_to_ten)          { KataRange::Range.new('[7, 10)') }
 
   describe "integer range contains" do
     it "contains {2,4} from [2,6)" do

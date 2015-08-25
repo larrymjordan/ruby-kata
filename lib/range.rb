@@ -3,9 +3,10 @@ module KataRange
   class Range
     attr_reader :from, :to
 
-    def initialize(from, to, config = {})
-      @from = config[:from] == :open ? from + 1 : from
-      @to = config[:to] == :open ? to - 1 : to
+    def initialize(range_expression)
+      /[\(\[](\d+),\s?(\d+)[\)\]]/ =~  range_expression
+      @from = range_expression.start_with?('(') ? $1.to_i + 1 : $1.to_i
+      @to   = range_expression.end_with?(')') ? $2.to_i - 1 : $2.to_i
     end
 
     def contains?(points)
