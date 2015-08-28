@@ -25,8 +25,8 @@ module KataRange
       all_points.any?{|point| range.all_points.include? point}
     end
 
-    def equals(range)
-      range.all_points == self.all_points
+    def equals?(other)
+      other.all_points == self.all_points
     end
   end
 end
