@@ -1,0 +1,8 @@
+require_relative 'block'
+require_relative 'iblock'
+require_relative 'jblock'
+require_relative 'lblock'
+require_relative 'oblock'
+require_relative 'sblock'
+require_relative 'tblock'
+require_relative 'zblock'
