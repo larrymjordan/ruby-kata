@@ -8,12 +8,12 @@ class Tetris::TBlock < Tetris::Block
 
   rotate :left do
     @block_states.rotate!
-    return @block_states.first
+    @block_states.first
   end
 
   rotate :right do
     @block_states.rotate!(-1)
-    return @block_states.first
+    @block_states.first
   end
 end
 
